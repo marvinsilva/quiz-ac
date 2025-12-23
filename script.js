@@ -31,11 +31,16 @@ const questoes = [
     justificativa: "O psicólogo atua no cuidado da saúde mental e suporte emocional."
   },
   {
-    caso: "Paciente com dificuldade para realizar atividades básicas de vida diária após trauma neurológico.",
-    alternativas: ["Fisioterapeuta", "Terapeuta ocupacional", "Psicólogo", "Enfermeiro"],
-    correta: 1,
-    justificativa: "O terapeuta ocupacional atua na funcionalidade e independência."
-  },
+  caso: "Paciente internado em CTI, consciente, apresenta episódios frequentes de ansiedade intensa, medo de morte, choro recorrente e dificuldade de adesão aos cuidados devido ao sofrimento emocional.",
+  alternativas: [
+    "Fonoaudiólogo",
+    "Enfermeiro",
+    "Psicólogo",
+    "Assistente social"
+  ],
+  correta: 2,
+  justificativa: "O psicólogo atua na avaliação e intervenção sobre sofrimento psíquico, ansiedade, medo e estratégias de enfrentamento durante a hospitalização."
+},
   {
     caso: "Paciente hospitalizado, sem rede de apoio familiar e com dificuldades socioeconômicas.",
     alternativas: ["Psicólogo", "Enfermeiro", "Assistente social", "Nutricionista"],
@@ -159,4 +164,57 @@ function mostrarRanking() {
     li.innerText = `${item.nome} – ${item.pontos} pontos`;
     lista.appendChild(li);
   });
+
+  if (pontuacao >= 8) {
+    dispararConfete();
+  }
+}
+
+function dispararConfete() {
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.position = "fixed";
+  canvas.style.top = 0;
+  canvas.style.left = 0;
+  canvas.style.pointerEvents = "none";
+
+  const confetes = [];
+
+  for (let i = 0; i < 150; i++) {
+    confetes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * 150,
+      color: `hsl(${Math.random() * 360}, 80%, 60%)`,
+      tilt: Math.random() * 10 - 10
+    });
+  }
+
+  let angle = 0;
+
+  function animar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    angle += 0.01;
+
+    confetes.forEach(c => {
+      c.y += Math.cos(angle + c.d) + 2;
+      c.x += Math.sin(angle);
+      ctx.beginPath();
+      ctx.fillStyle = c.color;
+      ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    if (confetes.some(c => c.y < canvas.height)) {
+      requestAnimationFrame(animar);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  animar();
 }
