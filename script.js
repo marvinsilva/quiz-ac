@@ -166,6 +166,29 @@ function mostrarRanking() {
     dispararConfete();
   }
 }
+function mostrarRanking() {
+  // Esconde a tela inicial
+  document.getElementById("inicio").style.display = "none";
+  // Exibe a tela do ranking
+  document.getElementById("rankingTela").style.display = "block";
+
+  // Preenche a lista de ranking
+  const lista = document.getElementById("ranking");
+  lista.innerHTML = ""; // Limpa a lista antes de adicionar os itens
+
+  const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+  ranking.forEach(item => {
+    const li = document.createElement("li");
+    li.innerText = `${item.nome} – ${item.pontos} pontos`;
+    lista.appendChild(li);
+  });
+}
+function voltarParaInicio() {
+  // Esconde a tela de ranking
+  document.getElementById("rankingTela").style.display = "none";
+  // Exibe a tela inicial
+  document.getElementById("inicio").style.display = "block";
+}
 
 function dispararConfete() {
   const duracao = 2 * 1000;

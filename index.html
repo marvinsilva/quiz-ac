@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Quiz Clínico Multiprofissional</title>
 
   <!-- Favicon -->
@@ -17,13 +16,13 @@
 <main class="container">
   <canvas id="confetti"></canvas>
 
-
   <!-- TELA INICIAL -->
   <section id="inicio">
     <h1>Quiz Clínico – Equipe Multiprofissional</h1>
     <p>Digite seu nome para iniciar:</p>
     <input type="text" id="nome" placeholder="Seu nome">
     <button onclick="iniciarQuiz()">Iniciar Quiz</button>
+    <button onclick="mostrarRanking()">Ver Ranking</button>
   </section>
 
   <!-- TELA DO QUIZ -->
@@ -40,14 +39,20 @@
     </button>
   </section>
 
+  <!-- TELA DO RANKING -->
+  <section id="rankingTela" style="display:none;">
+    <h2>Ranking de Participantes</h2>
+    <ul id="ranking"></ul>
+    <button onclick="voltarParaInicio()">Voltar para o início</button>
+  </section>
+
   <!-- TELA FINAL / RANKING -->
   <section id="final" style="display:none;">
     <h2>Ranking de Participantes</h2>
     <ul id="ranking"></ul>
     <!-- Botão para reiniciar -->
-   <button onclick="reiniciarQuiz()">Jogar novamente</button>
-</section>
-
+    <button onclick="reiniciarQuiz()">Jogar novamente</button>
+  </section>
 
 </main>
 
