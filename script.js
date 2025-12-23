@@ -4,13 +4,13 @@
 const questoes = [
     // --- FISIOTERAPIA (1 e 2) ---
     {
-        caso: "1. Paciente com DPOC exacerbado chega à emergência com dispneia intensa e uso de musculatura acessória. A gasometria mostra acidose respiratória. Além da medicação, qual profissional é crucial para avaliar e iniciar Ventilação Não Invasiva (VNI)?",
+        caso: " Paciente com DPOC exacerbado chega à emergência com dispneia intensa e uso de musculatura acessória. A gasometria mostra acidose respiratória. Além da medicação, qual profissional é crucial para avaliar e iniciar Ventilação Não Invasiva (VNI)?",
         alternativas: ["Fonoaudiologia", "Fisioterapia", "Serviço Social", "Nutrição"],
         correta: 1,
         justificativa: "O Fisioterapeuta é o especialista responsável pelo manejo da ventilação mecânica (invasiva e não invasiva) e terapias de expansão pulmonar."
     },
     {
-        caso: "2. Paciente pós-AVC isquêmico, estável hemodinamicamente, mas apresenta hemiplegia à direita e passou 4 dias acamado. Para prevenir complicações motoras e planejar a mobilização precoce, quem deve ser acionado?",
+        caso: " Paciente pós-AVC isquêmico, estável hemodinamicamente, mas apresenta hemiplegia à direita e passou 4 dias acamado. Para prevenir complicações motoras e planejar a mobilização precoce, quem deve ser acionado?",
         alternativas: ["Psicologia", "Farmácia", "Fisioterapia", "Enfermagem"],
         correta: 2,
         justificativa: "A Fisioterapia motora é essencial para avaliar a funcionalidade, prevenir contraturas e iniciar a reabilitação motora o mais cedo possível."
@@ -18,13 +18,13 @@ const questoes = [
 
     // --- FONOAUDIOLOGIA (3 e 4) ---
     {
-        caso: "3. Paciente idoso admitido por pneumonia aspirativa. Durante a oferta de água via oral, apresenta tosse úmida e voz molhada ('gargarejo'). Qual profissional deve realizar a avaliação da deglutição?",
+        caso: " Paciente idoso admitido por pneumonia aspirativa. Durante a oferta de água via oral, apresenta tosse úmida e voz molhada ('gargarejo'). Qual profissional deve realizar a avaliação da deglutição?",
         alternativas: ["Nutrição", "Fonoaudiologia", "Odontologia", "Fisioterapia"],
         correta: 1,
         justificativa: "A Fonoaudiologia avalia a segurança da deglutição (disfagia) para definir se o paciente pode comer por via oral ou precisa de sonda."
     },
     {
-        caso: "4. Paciente traqueostomizado na emergência está consciente e tenta se comunicar, mas não consegue emitir som, gerando ansiedade. Quem deve avaliar o uso de válvula de fala ou métodos alternativos de comunicação?",
+        caso: " Paciente traqueostomizado na emergência está consciente e tenta se comunicar, mas não consegue emitir som, gerando ansiedade. Quem deve avaliar o uso de válvula de fala ou métodos alternativos de comunicação?",
         alternativas: ["Psicologia", "Serviço Social", "Fonoaudiologia", "Enfermagem"],
         correta: 2,
         justificativa: "O Fonoaudiólogo é responsável pela reabilitação da comunicação e pelo manejo de válvulas de fala em pacientes traqueostomizados."
@@ -32,13 +32,13 @@ const questoes = [
 
     // --- NUTRIÇÃO (5 e 6) ---
     {
-        caso: "5. Paciente oncológico dá entrada na emergência com perda de 15kg em 2 meses e relata não conseguir aceitar a dieta do hospital. Quem deve realizar a triagem nutricional e adequar a dieta?",
+        caso: " Paciente oncológico dá entrada na emergência com perda de 15kg em 2 meses e relata não conseguir aceitar a dieta do hospital. Quem deve realizar a triagem nutricional e adequar a dieta?",
         alternativas: ["Farmácia", "Nutrição", "Psicologia", "Serviço Social"],
         correta: 1,
         justificativa: "O Nutricionista deve diagnosticar o risco nutricional, calcular as necessidades calóricas e adaptar a consistência ou suplementação da dieta."
     },
     {
-        caso: "6. Foi definida a passagem de Sonda Nasoenteral (SNE) para um paciente que não pode engolir. Após o raio-x confirmar a posição, quem é responsável por prescrever a fórmula e o volume da dieta enteral?",
+        caso: " Foi definida a passagem de Sonda Nasoenteral (SNE) para um paciente que não pode engolir. Após o raio-x confirmar a posição, quem é responsável por prescrever a fórmula e o volume da dieta enteral?",
         alternativas: ["Enfermagem", "Fonoaudiologia", "Nutrição", "Farmácia"],
         correta: 2,
         justificativa: "A prescrição dietética (tipo de fórmula, calorias, volume e macronutrientes) é competência privativa do Nutricionista."
@@ -46,13 +46,13 @@ const questoes = [
 
     // --- FARMÁCIA (7 e 8) ---
     {
-        caso: "7. Paciente idoso chega confuso, trazendo uma sacola com 15 medicamentos diferentes de uso domiciliar. Para evitar duplicidade ou interações com a nova prescrição hospitalar, deve-se solicitar:",
+        caso: " Paciente idoso chega confuso, trazendo uma sacola com 15 medicamentos diferentes de uso domiciliar. Para evitar duplicidade ou interações com a nova prescrição hospitalar, deve-se solicitar:",
         alternativas: ["Conciliação Medicamentosa pela Farmácia", "Avaliação Social", "Triagem Nutricional", "Avaliação Psicológica"],
         correta: 0,
         justificativa: "O Farmacêutico Clínico realiza a conciliação medicamentosa, garantindo que os remédios de casa sejam mantidos, suspensos ou ajustados corretamente."
     },
     {
-        caso: "8. Paciente apresenta piora súbita da função renal (Creatinina subiu de 0.8 para 2.5). Ele está em uso de Vancomicina (antibiótico). Quem deve ser acionado para o ajuste de dose baseado na função renal?",
+        caso: " Paciente apresenta piora súbita da função renal (Creatinina subiu de 0.8 para 2.5). Ele está em uso de Vancomicina (antibiótico). Quem deve ser acionado para o ajuste de dose baseado na função renal?",
         alternativas: ["Fisioterapia", "Enfermagem", "Farmácia", "Nutrição"],
         correta: 2,
         justificativa: "A Farmácia Clínica monitora níveis séricos e ajusta a posologia de antimicrobianos e outros fármacos de acordo com a depuração renal (ClCr)."
@@ -60,13 +60,13 @@ const questoes = [
 
     // --- SERVIÇO SOCIAL (9 e 10) ---
     {
-        caso: "9. Paciente em situação de rua recebe alta médica da emergência, mas não tem para onde ir e necessita de curativos diários. Para articular a rede de apoio ou acolhimento, aciona-se:",
+        caso: " Paciente em situação de rua recebe alta médica da emergência, mas não tem para onde ir e necessita de curativos diários. Para articular a rede de apoio ou acolhimento, aciona-se:",
         alternativas: ["Psicologia", "Enfermagem", "Serviço Social", "Fisioterapia"],
         correta: 2,
         justificativa: "O Assistente Social articula a rede de proteção, viabiliza desospitalização segura e conecta o paciente a abrigos ou unidades de saúde."
     },
     {
-        caso: "10. Um paciente chega à emergência trazido pelo SAMU, sem documentos, desacordado e sem acompanhantes. Para busca ativa de familiares e identificação civil, chama-se:",
+        caso: " Um paciente chega à emergência trazido pelo SAMU, sem documentos, desacordado e sem acompanhantes. Para busca ativa de familiares e identificação civil, chama-se:",
         alternativas: ["Segurança", "Serviço Social", "Psicologia", "Recepção"],
         correta: 1,
         justificativa: "O Serviço Social atua na busca de familiares e na regularização de documentação civil, fundamental para o seguimento do cuidado."
@@ -74,13 +74,13 @@ const questoes = [
 
     // --- PSICOLOGIA (11 e 12) ---
     {
-        caso: "11. Paciente jovem, vítima de acidente de moto, acaba de receber a notícia de que terá uma perna amputada. Ele está em estado de choque emocional e negação intensa. Quem deve dar suporte imediato?",
+        caso: " Paciente jovem, vítima de acidente de moto, acaba de receber a notícia de que terá uma perna amputada. Ele está em estado de choque emocional e negação intensa. Quem deve dar suporte imediato?",
         alternativas: ["Fisioterapia", "Serviço Social", "Psicologia", "Farmácia"],
         correta: 2,
         justificativa: "O Psicólogo Hospitalar atua no suporte emocional frente ao adoecimento, luto, perdas funcionais e notícias difíceis."
     },
     {
-        caso: "12. A equipe nota que um paciente na Sala Vermelha está extremamente ansioso, com medo da morte, dificultando a adesão ao tratamento, mas sem quadro psiquiátrico prévio. Qual consultoria é indicada?",
+        caso: " A equipe nota que um paciente na Sala Vermelha está extremamente ansioso, com medo da morte, dificultando a adesão ao tratamento, mas sem quadro psiquiátrico prévio. Qual consultoria é indicada?",
         alternativas: ["Psicologia", "Fonoaudiologia", "Nutrição", "Serviço Social"],
         correta: 0,
         justificativa: "A Psicologia auxilia no manejo da ansiedade situacional, ajudando o paciente a elaborar o processo de adoecimento e aderir ao tratamento."
@@ -88,13 +88,13 @@ const questoes = [
 
     // --- ENFERMAGEM (13 e 14) ---
     {
-        caso: "13. Paciente apresenta uma Lesão por Pressão (escara) Sacral Grau 3 com necrose. A equipe médica solicita avaliação especializada para desbridamento e cobertura específica. Quem é a referência técnica?",
+        caso: " Paciente apresenta uma Lesão por Pressão (escara) Sacral Grau 3 com necrose. A equipe médica solicita avaliação especializada para desbridamento e cobertura específica. Quem é a referência técnica?",
         alternativas: ["Fisioterapia", "Enfermagem (Estomaterapia/Curativos)", "Farmácia", "Nutrição"],
         correta: 1,
         justificativa: "Enfermeiros especialistas (Estomaterapeutas ou da Comissão de Pele) avaliam feridas complexas e prescrevem a cobertura/curativo ideal."
     },
     {
-        caso: "14. Durante a infusão de quimioterapia na emergência, o paciente refere dor e queimação no local do acesso venoso (suspeita de extravasamento). Quem lidera a conduta imediata de segurança?",
+        caso: " Durante a infusão de quimioterapia na emergência, o paciente refere dor e queimação no local do acesso venoso (suspeita de extravasamento). Quem lidera a conduta imediata de segurança?",
         alternativas: ["Farmácia", "Enfermagem", "Fisioterapia", "Serviço Social"],
         correta: 1,
         justificativa: "A equipe de Enfermagem é responsável pela vigilância dos acessos venosos, devendo parar a infusão e aplicar o protocolo de extravasamento imediatamente."
@@ -102,7 +102,7 @@ const questoes = [
 
     // --- EXTRA (Integração) (15) ---
     {
-        caso: "15. (Desafio) Paciente precisa de alta para Home Care (atendimento domiciliar) com oxigenoterapia. O médico deu a alta, mas falta organizar os equipamentos e o cadastro no programa de O2. Quem lidera esse processo logístico?",
+        caso: " (Desafio) Paciente precisa de alta para Home Care (atendimento domiciliar) com oxigenoterapia. O médico deu a alta, mas falta organizar os equipamentos e o cadastro no programa de O2. Quem lidera esse processo logístico?",
         alternativas: ["Nutrição", "Fonoaudiologia", "Serviço Social", "Psicologia"],
         correta: 2,
         justificativa: "Embora a Fisioterapia avalie a necessidade técnica, é o Serviço Social que viabiliza o acesso aos direitos, equipamentos e burocracia para o Home Care."
