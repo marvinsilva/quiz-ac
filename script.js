@@ -1,8 +1,37 @@
 /* ======================================================
-   1. DADOS DO QUIZ (Você precisa definir as perguntas)
+   CONFIGURAÇÃO DO FIREBASE (IMPORTANTE!)
+   ====================================================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs, 
+    query, 
+    orderBy, 
+    limit 
+} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+
+// ⚠️ SUBSTITUA PELOS SEUS DADOS DO FIREBASE CONSOLE (Passo 1)
+const firebaseConfig = {
+  apiKey: "AIzaSyA8WLlaNzU7cvMczsMbNnwTsXHGRW_B_vo",
+  authDomain: "quiz-ac-2a30f.firebaseapp.com",
+  projectId: "quiz-ac-2a30f",
+  storageBucket: "quiz-ac-2a30f.firebasestorage.app",
+  messagingSenderId: "546401535218",
+  appId: "1:546401535218:web:fd9a36247dbf90dbf4fc6b"
+};
+
+// Inicializa o Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const nomeColecao = "ranking_hcpa"; // Nome da tabela no banco
+
+/* ======================================================
+   1. DADOS DO QUIZ
    ====================================================== */
 const questoes = [
-    // --- FISIOTERAPIA (1 e 2) ---
+    // --- FISIOTERAPIA ---
     {
         caso: " Paciente com DPOC exacerbado chega à emergência com dispneia intensa e uso de musculatura acessória. A gasometria mostra acidose respiratória. Além da medicação, qual profissional é crucial para avaliar e iniciar Ventilação Não Invasiva (VNI)?",
         alternativas: ["Fonoaudiologia", "Fisioterapia", "Serviço Social", "Nutrição"],
@@ -15,8 +44,7 @@ const questoes = [
         correta: 2,
         justificativa: "A Fisioterapia motora é essencial para avaliar a funcionalidade, prevenir contraturas e iniciar a reabilitação motora o mais cedo possível."
     },
-
-    // --- FONOAUDIOLOGIA (3 e 4) ---
+    // --- FONOAUDIOLOGIA ---
     {
         caso: " Paciente idoso admitido por pneumonia aspirativa. Durante a oferta de água via oral, apresenta tosse úmida e voz molhada ('gargarejo'). Qual profissional deve realizar a avaliação da deglutição?",
         alternativas: ["Nutrição", "Fonoaudiologia", "Odontologia", "Fisioterapia"],
@@ -29,8 +57,7 @@ const questoes = [
         correta: 2,
         justificativa: "O Fonoaudiólogo é responsável pela reabilitação da comunicação e pelo manejo de válvulas de fala em pacientes traqueostomizados."
     },
-
-    // --- NUTRIÇÃO (5 e 6) ---
+    // --- NUTRIÇÃO ---
     {
         caso: " Paciente oncológico dá entrada na emergência com perda de 15kg em 2 meses e relata não conseguir aceitar a dieta do hospital. Quem deve realizar a triagem nutricional e adequar a dieta?",
         alternativas: ["Farmácia", "Nutrição", "Psicologia", "Serviço Social"],
@@ -43,8 +70,7 @@ const questoes = [
         correta: 2,
         justificativa: "A prescrição dietética (tipo de fórmula, calorias, volume e macronutrientes) é competência privativa do Nutricionista."
     },
-
-    // --- FARMÁCIA (7 e 8) ---
+    // --- FARMÁCIA ---
     {
         caso: " Paciente idoso chega confuso, trazendo uma sacola com 15 medicamentos diferentes de uso domiciliar. Para evitar duplicidade ou interações com a nova prescrição hospitalar, deve-se solicitar:",
         alternativas: ["Conciliação Medicamentosa pela Farmácia", "Avaliação Social", "Triagem Nutricional", "Avaliação Psicológica"],
@@ -57,8 +83,7 @@ const questoes = [
         correta: 2,
         justificativa: "A Farmácia Clínica monitora níveis séricos e ajusta a posologia de antimicrobianos e outros fármacos de acordo com a depuração renal (ClCr)."
     },
-
-    // --- SERVIÇO SOCIAL (9 e 10) ---
+    // --- SERVIÇO SOCIAL ---
     {
         caso: " Paciente em situação de rua recebe alta médica da emergência, mas não tem para onde ir e necessita de curativos diários. Para articular a rede de apoio ou acolhimento, aciona-se:",
         alternativas: ["Psicologia", "Enfermagem", "Serviço Social", "Fisioterapia"],
@@ -71,8 +96,7 @@ const questoes = [
         correta: 1,
         justificativa: "O Serviço Social atua na busca de familiares e na regularização de documentação civil, fundamental para o seguimento do cuidado."
     },
-
-    // --- PSICOLOGIA (11 e 12) ---
+    // --- PSICOLOGIA ---
     {
         caso: " Paciente jovem, vítima de acidente de moto, acaba de receber a notícia de que terá uma perna amputada. Ele está em estado de choque emocional e negação intensa. Quem deve dar suporte imediato?",
         alternativas: ["Fisioterapia", "Serviço Social", "Psicologia", "Farmácia"],
@@ -85,8 +109,7 @@ const questoes = [
         correta: 0,
         justificativa: "A Psicologia auxilia no manejo da ansiedade situacional, ajudando o paciente a elaborar o processo de adoecimento e aderir ao tratamento."
     },
-
-    // --- ENFERMAGEM (13 e 14) ---
+    // --- ENFERMAGEM ---
     {
         caso: " Paciente apresenta uma Lesão por Pressão (escara) Sacral Grau 3 com necrose. A equipe médica solicita avaliação especializada para desbridamento e cobertura específica. Quem é a referência técnica?",
         alternativas: ["Fisioterapia", "Enfermagem (Estomaterapia/Curativos)", "Farmácia", "Nutrição"],
@@ -99,8 +122,7 @@ const questoes = [
         correta: 1,
         justificativa: "A equipe de Enfermagem é responsável pela vigilância dos acessos venosos, devendo parar a infusão e aplicar o protocolo de extravasamento imediatamente."
     },
-
-    // --- EXTRA (Integração) (15) ---
+    // --- EXTRA ---
     {
         caso: " (Desafio) Paciente precisa de alta para Home Care (atendimento domiciliar) com oxigenoterapia. O médico deu a alta, mas falta organizar os equipamentos e o cadastro no programa de O2. Quem lidera esse processo logístico?",
         alternativas: ["Nutrição", "Fonoaudiologia", "Serviço Social", "Psicologia"],
@@ -132,7 +154,6 @@ function iniciarQuiz() {
     indice = 0;
     pontuacao = 0;
 
-    // Embaralha as perguntas
     embaralharQuestoes(questoes);
 
     // Troca de tela
@@ -152,23 +173,18 @@ function embaralharQuestoes(array) {
 }
 
 function carregarQuestao() {
-    // Verifica se há perguntas
     if (!questoes || questoes.length === 0) {
         console.error("Nenhuma questão encontrada!");
         return;
     }
 
-    // Atualiza progresso
     document.getElementById("progresso").innerText = `Questão ${indice + 1} de ${questoes.length}`;
-    
-    // Carrega textos
     document.getElementById("caso").innerText = questoes[indice].caso;
     document.getElementById("feedback").innerText = "";
     document.getElementById("btnProximo").style.display = "none";
 
-    // Gera botões de alternativas
     const alt = document.getElementById("alternativas");
-    alt.innerHTML = ""; // Limpa botões anteriores
+    alt.innerHTML = "";
 
     questoes[indice].alternativas.forEach((texto, i) => {
         const btn = document.createElement("button");
@@ -182,7 +198,6 @@ function verificarResposta(respostaEscolhida, botaoClicado) {
     const feedback = document.getElementById("feedback");
     const divAlternativas = document.getElementById("alternativas");
     
-    // Desabilita todos os botões para não clicar duas vezes
     const botoes = divAlternativas.getElementsByTagName("button");
     for (let btn of botoes) {
         btn.disabled = true;
@@ -195,11 +210,11 @@ function verificarResposta(respostaEscolhida, botaoClicado) {
         pontuacao++;
         feedback.innerText = "Resposta Correta! ✅ " + questoes[indice].justificativa;
         feedback.style.color = "green";
-        botaoClicado.style.backgroundColor = "#4CAF50"; // Verde
+        botaoClicado.style.backgroundColor = "#4CAF50";
     } else {
         feedback.innerText = "Resposta Incorreta ❌. " + questoes[indice].justificativa;
         feedback.style.color = "red";
-        botaoClicado.style.backgroundColor = "#F44336"; // Vermelho
+        botaoClicado.style.backgroundColor = "#F44336";
     }
 }
 
@@ -213,55 +228,67 @@ function proximaQuestao() {
 }
 
 function finalizarJogo() {
-    salvarRanking();
+    salvarRanking(); // Agora salva no Firebase
     mostrarRankingFinal();
 }
 
 /* ======================================================
-   4. SISTEMA DE RANKING
+   4. SISTEMA DE RANKING (COM FIREBASE)
    ====================================================== */
 
-function salvarRanking() {
-    const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-    ranking.push({ nome: jogador, pontos: pontuacao });
-    
-    // Ordena do maior para o menor
-    ranking.sort((a, b) => b.pontos - a.pontos);
-    
-    // Salva apenas os top 15
-    localStorage.setItem("ranking", JSON.stringify(ranking.slice(0, 15)));
+// Função ASYNC: Envia dados para o Google Firestore
+async function salvarRanking() {
+    try {
+        await addDoc(collection(db, nomeColecao), {
+            nome: jogador,
+            pontos: pontuacao,
+            data: new Date() // Salva a data também
+        });
+        console.log("Ranking salvo na nuvem!");
+    } catch (e) {
+        console.error("Erro ao salvar no Firebase: ", e);
+        alert("Erro ao salvar ranking. Verifique a internet.");
+    }
 }
 
-// CORREÇÃO AQUI: Removemos a chave '}' extra que existia antes desta função
-function renderizarRanking(idLista) {
+// Função ASYNC: Lê dados do Google Firestore
+async function renderizarRanking(idLista) {
     const lista = document.getElementById(idLista);
-    
-    // Proteção contra erro de null (caso o ID esteja errado no HTML)
-    if (!lista) {
-        console.error(`Elemento com id '${idLista}' não encontrado no HTML.`);
-        return;
+    if (!lista) return;
+
+    lista.innerHTML = "<li>Carregando ranking global... ⏳</li>";
+
+    try {
+        // Busca os Top 15 ordenados por pontos (decrescente)
+        const q = query(collection(db, nomeColecao), orderBy("pontos", "desc"), limit(15));
+        const querySnapshot = await getDocs(q);
+
+        lista.innerHTML = ""; // Limpa o "carregando"
+
+        if (querySnapshot.empty) {
+            lista.innerHTML = "<li>Ainda não há jogadores no ranking. Seja o primeiro!</li>";
+            return;
+        }
+
+        let posicao = 1;
+        querySnapshot.forEach((doc) => {
+            const item = doc.data();
+            const li = document.createElement("li");
+
+            let medalha = `${posicao}º `;
+            if (posicao === 1) medalha = "🥇 ";
+            if (posicao === 2) medalha = "🥈 ";
+            if (posicao === 3) medalha = "🥉 ";
+
+            li.innerText = `${medalha}${item.nome} – ${item.pontos} pontos`;
+            lista.appendChild(li);
+            posicao++;
+        });
+
+    } catch (error) {
+        console.error("Erro ao buscar ranking:", error);
+        lista.innerHTML = "<li>Erro ao carregar ranking. Verifique a conexão.</li>";
     }
-
-    lista.innerHTML = "";
-
-    const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-
-    if (ranking.length === 0) {
-        lista.innerHTML = "<li>Ainda não há jogadores no ranking.</li>";
-        return;
-    }
-
-    ranking.slice(0, 15).forEach((item, i) => {
-        const li = document.createElement("li");
-
-        let medalha = `${i + 1}º `;
-        if (i === 0) medalha = "🥇 ";
-        if (i === 1) medalha = "🥈 ";
-        if (i === 2) medalha = "🥉 ";
-
-        li.innerText = `${medalha}${item.nome} – ${item.pontos} pontos`;
-        lista.appendChild(li);
-    });
 }
 
 function mostrarRankingInicio() {
@@ -279,16 +306,13 @@ function mostrarRankingFinal() {
     
     renderizarRanking("rankingFinal");
 
-    // Lógica do confete (acima de 50% de acerto, por exemplo)
-    if (pontuacao >= 10) dispararConfete();
+    if (pontuacao >= 8) dispararConfete();
 }
 
 function voltarParaInicio() {
     document.getElementById("rankingTela").style.display = "none";
     document.getElementById("final").style.display = "none";
     document.getElementById("inicio").style.display = "block";
-    
-    // Limpa o input
     document.getElementById("nome").value = "";
 }
 
@@ -297,11 +321,20 @@ function reiniciarQuiz() {
 }
 
 /* ======================================================
-   5. EFEITOS VISUAIS (CONFETE)
+   5. EXPORTAR FUNÇÕES PARA O HTML
+   ====================================================== */
+// Isso é necessário porque usamos type="module"
+window.iniciarQuiz = iniciarQuiz;
+window.proximaQuestao = proximaQuestao;
+window.mostrarRankingInicio = mostrarRankingInicio;
+window.voltarParaInicio = voltarParaInicio;
+window.reiniciarQuiz = reiniciarQuiz;
+
+/* ======================================================
+   6. EFEITOS VISUAIS
    ====================================================== */
 
 function dispararConfete() {
-    // Verifica se a biblioteca foi carregada
     if (typeof confetti === "undefined") return;
 
     const fim = Date.now() + 2000;
