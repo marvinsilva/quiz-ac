@@ -280,7 +280,7 @@ function mostrarRankingFinal() {
     renderizarRanking("rankingFinal");
 
     // Lógica do confete (acima de 50% de acerto, por exemplo)
-    if (pontuacao > 8) dispararConfete();
+    if (pontuacao > 10) dispararConfete();
 }
 
 function voltarParaInicio() {
