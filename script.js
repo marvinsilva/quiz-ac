@@ -15,7 +15,6 @@ function obterMedalha(posicao) {
   if (posicao === 2) return "🥉";
   return `${posicao + 1}º`;
 }
-
 function iniciarQuiz() {
   jogador = document.getElementById("nome").value.trim();
   if (!jogador) {
@@ -23,7 +22,8 @@ function iniciarQuiz() {
     return;
   }
 
-  embaralharQuestoes(questoes);
+  embaralharQuestoes(questoes); // ← AQUI É O LUGAR CERTO
+
   indice = 0;
   pontuacao = 0;
 
@@ -143,4 +143,10 @@ function mostrarRankingInicio() {
   document.getElementById("rankingTela").style.display = "block";
 
   renderizarRanking("rankingInicio");
+}
+function embaralharQuestoes(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 }
