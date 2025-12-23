@@ -12,9 +12,8 @@ import {
     limit 
 } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 
-// ⚠️ SUBSTITUA PELOS SEUS DADOS DO FIREBASE CONSOLE (Passo 1)
 const firebaseConfig = {
-  apiKey: "AIzaSyA8WLLaMzU7cvMczsMbNnwTsXHGRW_B_vo", // Exemplo real
+  apiKey: "AIzaSyA8WLLaMzU7cvMczsMbNnwTsXHGRW_B_vo",
   authDomain: "quiz-ac-2a30f.firebaseapp.com",
   projectId: "quiz-ac-2a30f",
   storageBucket: "quiz-ac-2a30f.firebasestorage.app",
