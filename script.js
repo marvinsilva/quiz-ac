@@ -14,14 +14,13 @@ import {
 
 // ⚠️ SUBSTITUA PELOS SEUS DADOS DO FIREBASE CONSOLE (Passo 1)
 const firebaseConfig = {
-  apiKey: "AIzaSyA8WLlaNzU7cvMczsMbNnwTsXHGRW_B_vo",
-  authDomain: "quiz-ac-2a30f.firebaseapp.com",
-  projectId: "quiz-ac-2a30f",
-  storageBucket: "quiz-ac-2a30f.firebasestorage.app",
-  messagingSenderId: "546401535218",
-  appId: "1:546401535218:web:fd9a36247dbf90dbf4fc6b"
+  apiKey: "SEU_CODIGO_ENORME_AQUI", // Tem vírgula aqui?
+  authDomain: "quiz-ac-xxxx.firebaseapp.com", // Tem vírgula aqui?
+  projectId: "quiz-ac-xxxx", // Tem vírgula aqui?
+  storageBucket: "quiz-ac-xxxx.firebasestorage.app", // Tem vírgula aqui?
+  messagingSenderId: "123456...", // Tem vírgula aqui?
+  appId: "1:123456..." // A última linha não precisa de vírgula, mas se tiver não tem problema
 };
-
 // Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
