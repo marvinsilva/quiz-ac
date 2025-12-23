@@ -3,26 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Quiz Clínico Multiprofissional</title>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <!-- Estilo -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <main class="container">
 
-  <!-- TELA INICIAL -->
+  <!-- INÍCIO -->
   <section id="inicio">
     <h1>Quiz Clínico – Equipe Multiprofissional</h1>
-    <p>Digite seu nome para iniciar:</p>
-
-    <input type="text" id="nome" placeholder="Seu nome">
-
+    <input type="text" id="nome" placeholder="Digite seu nome">
     <div class="botoes">
       <button onclick="iniciarQuiz()">Iniciar Quiz</button>
       <button class="secundario" onclick="mostrarRankingInicio()">Ver Ranking</button>
@@ -36,21 +27,18 @@
     <button class="secundario" onclick="voltarParaInicio()">Voltar</button>
   </section>
 
-  <!-- TELA DO QUIZ -->
+  <!-- QUIZ -->
   <section id="quiz" style="display:none;">
     <p id="progresso"></p>
     <p id="caso"></p>
-
     <div id="alternativas"></div>
-
     <p id="feedback"></p>
-
     <button id="btnProximo" onclick="proximaQuestao()" style="display:none;">
       Próxima questão
     </button>
   </section>
 
-  <!-- TELA FINAL -->
+  <!-- FINAL -->
   <section id="final" style="display:none;">
     <h2>Ranking Final – Top 15</h2>
     <ul id="rankingFinal"></ul>
@@ -59,10 +47,7 @@
 
 </main>
 
-<!-- Confetti -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-<!-- Script principal -->
 <script src="script.js"></script>
 
 </body>
