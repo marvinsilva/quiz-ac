@@ -167,22 +167,27 @@ function mostrarRanking() {
   }
 }
 function mostrarRanking() {
-  // Esconde a tela inicial
-  document.getElementById("inicio").style.display = "none";
-  // Exibe a tela do ranking
-  document.getElementById("rankingTela").style.display = "block";
+  // Se o usuário acertou 8 ou mais, dispara o confete
+  if (pontuacao >= 8) {
+    dispararConfete();
+  }
 
-  // Preenche a lista de ranking
-  const lista = document.getElementById("ranking");
-  lista.innerHTML = ""; // Limpa a lista antes de adicionar os itens
+  // Esconde a tela de quiz e exibe a tela final
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("final").style.display = "block";
+
+  // Preenche a lista de ranking na tela final
+  const listaRankingFinal = document.getElementById("ranking");
+  listaRankingFinal.innerHTML = ""; // Limpa a lista antes de adicionar os itens
 
   const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
   ranking.forEach(item => {
     const li = document.createElement("li");
     li.innerText = `${item.nome} – ${item.pontos} pontos`;
-    lista.appendChild(li);
+    listaRankingFinal.appendChild(li);
   });
 }
+
 function voltarParaInicio() {
   // Esconde a tela de ranking
   document.getElementById("rankingTela").style.display = "none";

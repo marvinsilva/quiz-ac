@@ -162,3 +162,9 @@ button:disabled {
     font-size: 1.4rem;
   }
 }
+button {
+  margin: 10px 0; /* Espaço vertical entre os botões */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
