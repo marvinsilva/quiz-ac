@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Quiz Clínico Multiprofissional</title>
 
   <!-- Favicon -->
@@ -14,15 +15,25 @@
 <body>
 
 <main class="container">
-  <canvas id="confetti"></canvas>
 
   <!-- TELA INICIAL -->
   <section id="inicio">
     <h1>Quiz Clínico – Equipe Multiprofissional</h1>
     <p>Digite seu nome para iniciar:</p>
+
     <input type="text" id="nome" placeholder="Seu nome">
-    <button onclick="iniciarQuiz()">Iniciar Quiz</button>
-    <button onclick="mostrarRanking()">Ver Ranking</button>
+
+    <div class="botoes">
+      <button onclick="iniciarQuiz()">Iniciar Quiz</button>
+      <button class="secundario" onclick="mostrarRankingInicio()">Ver Ranking</button>
+    </div>
+  </section>
+
+  <!-- RANKING INICIAL -->
+  <section id="rankingTela" style="display:none;">
+    <h2>Ranking – Top 15</h2>
+    <ul id="rankingInicio"></ul>
+    <button class="secundario" onclick="voltarParaInicio()">Voltar</button>
   </section>
 
   <!-- TELA DO QUIZ -->
@@ -39,26 +50,19 @@
     </button>
   </section>
 
-  <!-- TELA DO RANKING -->
-  <section id="rankingTela" style="display:none;">
-    <h2>Ranking de Participantes</h2>
-    <ul id="ranking"></ul>
-    <button onclick="voltarParaInicio()">Voltar para o início</button>
-  </section>
-
-  <!-- TELA FINAL / RANKING -->
+  <!-- TELA FINAL -->
   <section id="final" style="display:none;">
-    <h2>Ranking de Participantes</h2>
-    <ul id="ranking"></ul>
-    <!-- Botão para reiniciar -->
+    <h2>Ranking Final – Top 15</h2>
+    <ul id="rankingFinal"></ul>
     <button onclick="reiniciarQuiz()">Jogar novamente</button>
   </section>
 
 </main>
 
+<!-- Confetti -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-<!-- Script principal (OBRIGATÓRIO no final) -->
+<!-- Script principal -->
 <script src="script.js"></script>
 
 </body>

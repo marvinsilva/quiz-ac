@@ -1,170 +1,72 @@
-/* =========================
-   CORES INSTITUCIONAIS HCPA
-   ========================= */
 :root {
-  --azul-hcpa: #005aa7;
-  --azul-escuro-hcpa: #003f7d;
-  --cinza-claro: #f4f6f8;
-  --cinza-medio: #e0e0e0;
-  --verde-sucesso: #2e7d32;
-  --vermelho-erro: #c62828;
-  --texto-principal: #1f2933;
+  --primaria: #005b96;
+  --secundaria: #e6f0fa;
+  --texto: #1f2933;
 }
 
-/* =========================
-   RESET E BASE
-   ========================= */
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background: linear-gradient(180deg, var(--azul-hcpa), var(--azul-escuro-hcpa));
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--texto-principal);
+  background: var(--secundaria);
+  margin: 0;
+  padding: 20px;
 }
 
-/* =========================
-   CONTAINER
-   ========================= */
 .container {
-  background-color: #ffffff;
-  width: 100%;
-  max-width: 720px;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* =========================
-   TÍTULOS
-   ========================= */
-h1, h2 {
-  color: var(--azul-hcpa);
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-p {
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-/* =========================
-   INPUT
-   ========================= */
-input[type="text"] {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1.25rem;
-  border-radius: 8px;
-  border: 1px solid var(--cinza-medio);
-  font-size: 1rem;
-}
-
-/* =========================
-   BOTÕES
-   ========================= */
-button {
-  width: 100%;
-  padding: 0.9rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
+  max-width: 700px;
+  background: #fff;
+  margin: auto;
+  padding: 30px;
   border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  color: var(--primaria);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+}
+
+button {
+  padding: 10px 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  background: var(--primaria);
+  color: white;
   cursor: pointer;
-  background-color: var(--azul-hcpa);
-  color: #ffffff;
-  transition: all 0.2s ease;
 }
 
-button:hover {
-  background-color: var(--azul-escuro-hcpa);
-  transform: translateY(-2px);
+button.secundario {
+  background: #64748b;
 }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.botoes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-/* =========================
-   ALTERNATIVAS
-   ========================= */
 #alternativas button {
-  background-color: var(--cinza-claro);
-  color: var(--texto-principal);
-  margin-bottom: 0.75rem;
-  border: 1px solid var(--cinza-medio);
+  display: block;
+  width: 100%;
+  margin: 8px 0;
 }
 
-#alternativas button:hover {
-  background-color: var(--azul-hcpa);
-  color: #ffffff;
-}
-
-/* =========================
-   FEEDBACK
-   ========================= */
-#feedback {
-  font-weight: 600;
-  margin-top: 1rem;
-}
-
-#feedback.correto {
-  color: var(--verde-sucesso);
-}
-
-#feedback.errado {
-  color: var(--vermelho-erro);
-}
-
-/* =========================
-   PROGRESSO
-   ========================= */
-#progresso {
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--azul-escuro-hcpa);
-}
-
-/* =========================
-   RANKING
-   ========================= */
-#ranking {
+ul {
   list-style: none;
   padding: 0;
 }
 
-#ranking li {
-  background-color: var(--cinza-claro);
-  padding: 0.75rem;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+li {
+  padding: 6px 0;
 }
 
-/* =========================
-   RESPONSIVO
-   ========================= */
-@media (max-width: 480px) {
-  .container {
-    padding: 1.25rem;
-  }
-
-  h1 {
-    font-size: 1.4rem;
-  }
-}
-button {
-  margin: 10px 0; /* Espaço vertical entre os botões */
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
+li:nth-child(1) { font-weight: bold; }

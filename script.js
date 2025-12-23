@@ -1,9 +1,6 @@
 /* ===============================
    QUIZ CLÍNICO MULTIPROFISSIONAL
-   Script completo e funcional
    =============================== */
-
-/* -------- BANCO DE QUESTÕES -------- */
 
 const questoes = [
   {
@@ -22,49 +19,49 @@ const questoes = [
     caso: "Paciente com perda ponderal importante, baixa aceitação alimentar e risco nutricional.",
     alternativas: ["Nutricionista", "Psicólogo", "Enfermeiro", "Fonoaudiólogo"],
     correta: 0,
-    justificativa: "O nutricionista avalia ingestão, estado nutricional e prescrição dietética."
+    justificativa: "O nutricionista avalia ingestão e prescrição dietética."
   },
   {
-    caso: "Paciente internado em CTI, consciente, apresenta ansiedade intensa, medo de morte e choro recorrente.",
+    caso: "Paciente em CTI apresenta ansiedade intensa e choro recorrente.",
     alternativas: ["Fonoaudiólogo", "Enfermeiro", "Psicólogo", "Assistente social"],
     correta: 2,
-    justificativa: "O psicólogo atua no manejo do sofrimento psíquico e estratégias de enfrentamento."
+    justificativa: "O psicólogo atua no manejo do sofrimento psíquico."
   },
   {
-    caso: "Paciente hospitalizado apresenta alteração importante no padrão de sono, dor não controlada e dificuldades no manejo diário dos cuidados.",
-    alternativas: ["Fisioterapeuta", "Fonoaudiólogo", "Enfermeiro", "Psicólogo"],
-    correta: 2,
-    justificativa: "O enfermeiro é responsável pelo cuidado integral e manejo diário."
-  },
-  {
-    caso: "Paciente hospitalizado, sem rede de apoio familiar e com dificuldades socioeconômicas.",
+    caso: "Paciente hospitalizado sem rede de apoio familiar.",
     alternativas: ["Psicólogo", "Enfermeiro", "Assistente social", "Nutricionista"],
     correta: 2,
-    justificativa: "O assistente social intervém nas questões sociais e de suporte."
+    justificativa: "O assistente social atua nas questões sociais."
   },
   {
-    caso: "Paciente traqueostomizado com dificuldade de comunicação oral.",
+    caso: "Paciente traqueostomizado com dificuldade de comunicação.",
     alternativas: ["Fonoaudiólogo", "Fisioterapeuta", "Psicólogo", "Enfermeiro"],
     correta: 0,
-    justificativa: "O fonoaudiólogo atua na comunicação e uso de válvulas de fala."
+    justificativa: "O fonoaudiólogo atua na comunicação e fala."
   },
   {
-    caso: "Paciente com risco elevado de lesão por pressão devido à imobilidade prolongada.",
+    caso: "Paciente com risco de lesão por pressão por imobilidade.",
     alternativas: ["Nutricionista", "Fonoaudiólogo", "Fisioterapeuta", "Psicólogo"],
     correta: 2,
-    justificativa: "O fisioterapeuta atua no posicionamento e mobilização."
+    justificativa: "O fisioterapeuta atua no posicionamento."
   },
   {
-    caso: "Paciente com recusa alimentar associada a quadro depressivo.",
+    caso: "Paciente com recusa alimentar associada à depressão.",
     alternativas: ["Nutricionista", "Psicólogo", "Fonoaudiólogo", "Assistente social"],
     correta: 1,
-    justificativa: "O psicólogo avalia fatores emocionais associados à recusa alimentar."
+    justificativa: "O psicólogo avalia fatores emocionais."
   },
   {
-    caso: "Paciente com alteração vocal persistente após intubação orotraqueal prolongada.",
+    caso: "Paciente com alteração vocal após intubação prolongada.",
     alternativas: ["Fisioterapeuta", "Enfermeiro", "Fonoaudiólogo", "Psicólogo"],
     correta: 2,
-    justificativa: "O fonoaudiólogo avalia e reabilita distúrbios vocais."
+    justificativa: "O fonoaudiólogo reabilita distúrbios vocais."
+  },
+  {
+    caso: "Paciente com dor e dificuldades no manejo diário dos cuidados.",
+    alternativas: ["Fisioterapeuta", "Fonoaudiólogo", "Enfermeiro", "Psicólogo"],
+    correta: 2,
+    justificativa: "O enfermeiro coordena o cuidado integral."
   }
 ];
 
@@ -72,26 +69,37 @@ let indice = 0;
 let pontuacao = 0;
 let jogador = "";
 
-// Embaralha as questões quando o quiz for iniciado
-embaralharQuestoes(questoes);
-carregarQuestao();
+/* -------- UTILIDADES -------- */
 
-/* -------- FUNÇÕES PRINCIPAIS -------- */
+function embaralharQuestoes(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
-/* ESTA FUNÇÃO PRECISA SER GLOBAL */
+function obterMedalha(posicao) {
+  if (posicao === 0) return "🥇";
+  if (posicao === 1) return "🥈";
+  if (posicao === 2) return "🥉";
+  return `${posicao + 1}º`;
+}
+
+/* -------- QUIZ -------- */
+
 function iniciarQuiz() {
   jogador = document.getElementById("nome").value;
-
   if (!jogador) {
-    alert("Por favor, digite seu nome.");
+    alert("Digite seu nome.");
     return;
   }
 
-  document.getElementById("inicio").style.display = "none";
-  document.getElementById("quiz").style.display = "block";
-
+  embaralharQuestoes(questoes);
   indice = 0;
   pontuacao = 0;
+
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
 
   carregarQuestao();
 }
@@ -99,19 +107,18 @@ function iniciarQuiz() {
 function carregarQuestao() {
   document.getElementById("progresso").innerText =
     `Questão ${indice + 1} de ${questoes.length}`;
-
   document.getElementById("caso").innerText = questoes[indice].caso;
   document.getElementById("feedback").innerText = "";
   document.getElementById("btnProximo").style.display = "none";
 
-  const alternativasDiv = document.getElementById("alternativas");
-  alternativasDiv.innerHTML = "";
+  const alt = document.getElementById("alternativas");
+  alt.innerHTML = "";
 
   questoes[indice].alternativas.forEach((texto, i) => {
-    const botao = document.createElement("button");
-    botao.innerText = texto;
-    botao.onclick = () => verificarResposta(i);
-    alternativasDiv.appendChild(botao);
+    const btn = document.createElement("button");
+    btn.innerText = texto;
+    btn.onclick = () => verificarResposta(i);
+    alt.appendChild(btn);
   });
 }
 
@@ -135,7 +142,7 @@ function proximaQuestao() {
     carregarQuestao();
   } else {
     salvarRanking();
-    mostrarRanking();
+    mostrarRankingFinal();
   }
 }
 
@@ -145,66 +152,59 @@ function salvarRanking() {
   const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
   ranking.push({ nome: jogador, pontos: pontuacao });
   ranking.sort((a, b) => b.pontos - a.pontos);
-  localStorage.setItem("ranking", JSON.stringify(ranking));
+  localStorage.setItem("ranking", JSON.stringify(ranking.slice(0, 15)));
 }
 
-function mostrarRanking() {
-  // Esconde a tela de quiz e exibe a tela final (ranking)
+function mostrarRankingFinal() {
   document.getElementById("quiz").style.display = "none";
   document.getElementById("final").style.display = "block";
 
-  // Preenche a lista de ranking
-  const lista = document.getElementById("ranking");
+  const lista = document.getElementById("rankingFinal");
   lista.innerHTML = "";
 
   const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-  ranking.forEach(item => {
+  ranking.forEach((item, i) => {
     const li = document.createElement("li");
-    li.innerText = `${item.nome} – ${item.pontos} pontos`;
+    li.innerText = `${obterMedalha(i)} ${item.nome} – ${item.pontos} pontos`;
     lista.appendChild(li);
   });
 
-  // Se o jogador acertou 8 ou mais, dispara o confete
-  if (pontuacao >= 8) {
-    dispararConfete();
-  }
+  if (pontuacao >= 8) dispararConfete();
+}
+
+function mostrarRankingInicio() {
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("rankingTela").style.display = "block";
+
+  const lista = document.getElementById("rankingInicio");
+  lista.innerHTML = "";
+
+  const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+  ranking.forEach((item, i) => {
+    const li = document.createElement("li");
+    li.innerText = `${obterMedalha(i)} ${item.nome} – ${item.pontos} pontos`;
+    lista.appendChild(li);
+  });
 }
 
 function voltarParaInicio() {
-  // Esconde a tela de ranking e exibe a tela inicial
   document.getElementById("rankingTela").style.display = "none";
   document.getElementById("inicio").style.display = "block";
 }
 
-function dispararConfete() {
-  const duracao = 2 * 1000;
-  const fim = Date.now() + duracao;
-
-  (function frame() {
-    confetti({
-      particleCount: 5,
-      angle: 60,
-      spread: 55,
-      origin: { x: 0 }
-    });
-    confetti({
-      particleCount: 5,
-      angle: 120,
-      spread: 55,
-      origin: { x: 1 }
-    });
-
-    if (Date.now() < fim) {
-      requestAnimationFrame(frame);
-    }
-  })();
+function reiniciarQuiz() {
+  document.getElementById("final").style.display = "none";
+  document.getElementById("inicio").style.display = "block";
+  document.getElementById("nome").value = "";
 }
 
-function reiniciarQuiz() {
-  // Esconde a tela final (ranking)
-  document.getElementById("final").style.display = "none";
-  // Exibe a tela inicial
-  document.getElementById("inicio").style.display = "block";
-  // Limpa o campo do nome
-  document.getElementById("nome").value = "";
+/* -------- CONFETE -------- */
+
+function dispararConfete() {
+  const fim = Date.now() + 2000;
+  (function frame() {
+    confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+    confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+    if (Date.now() < fim) requestAnimationFrame(frame);
+  })();
 }
