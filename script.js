@@ -72,6 +72,9 @@ let indice = 0;
 let pontuacao = 0;
 let jogador = "";
 
+embaralharQuestoes(questoes);
+carregarQuestao();
+
 
 /* -------- FUNÇÕES PRINCIPAIS -------- */
 
@@ -186,5 +189,16 @@ function dispararConfete() {
       requestAnimationFrame(frame);
     }
   })();
+}
+function reiniciarQuiz() {
+  document.getElementById("final").style.display = "none";
+  document.getElementById("inicio").style.display = "block";
+  document.getElementById("nome").value = "";
+}
+function embaralharQuestoes(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 }
 
