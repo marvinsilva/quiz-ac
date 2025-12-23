@@ -85,22 +85,25 @@ function salvarRanking() {
   localStorage.setItem("ranking", JSON.stringify(ranking.slice(0, 15)));
 }
 
+}
 function renderizarRanking(idLista) {
   const lista = document.getElementById(idLista);
   lista.innerHTML = "";
 
   const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-  ranking.forEach((item, i) => {
+
+  ranking.slice(0, 15).forEach((item, i) => {
     const li = document.createElement("li");
-    li.innerText = `${obterMedalha(i)} ${item.nome} – ${item.pontos} pontos`;
+
+    let medalha = "";
+    if (i === 0) medalha = "🥇 ";
+    else if (i === 1) medalha = "🥈 ";
+    else if (i === 2) medalha = "🥉 ";
+    else medalha = `${i + 1}º `;
+
+    li.innerText = `${medalha}${item.nome} – ${item.pontos} pontos`;
     lista.appendChild(li);
   });
-}
-
-function mostrarRankingInicio() {
-  document.getElementById("inicio").style.display = "none";
-  document.getElementById("rankingTela").style.display = "block";
-  renderizarRanking("rankingInicio");
 }
 
 function mostrarRankingFinal() {
@@ -131,4 +134,13 @@ function dispararConfete() {
     confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
     if (Date.now() < fim) requestAnimationFrame(frame);
   })();
+}
+function mostrarRankingInicio() {
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("final").style.display = "none";
+
+  document.getElementById("rankingTela").style.display = "block";
+
+  renderizarRanking("rankingInicio");
 }
