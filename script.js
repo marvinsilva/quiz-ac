@@ -72,9 +72,9 @@ let indice = 0;
 let pontuacao = 0;
 let jogador = "";
 
+// Embaralha as questões quando o quiz for iniciado
 embaralharQuestoes(questoes);
 carregarQuestao();
-
 
 /* -------- FUNÇÕES PRINCIPAIS -------- */
 
@@ -149,9 +149,11 @@ function salvarRanking() {
 }
 
 function mostrarRanking() {
+  // Esconde a tela de quiz e exibe a tela final (ranking)
   document.getElementById("quiz").style.display = "none";
   document.getElementById("final").style.display = "block";
 
+  // Preenche a lista de ranking
   const lista = document.getElementById("ranking");
   lista.innerHTML = "";
 
@@ -162,36 +164,15 @@ function mostrarRanking() {
     lista.appendChild(li);
   });
 
+  // Se o jogador acertou 8 ou mais, dispara o confete
   if (pontuacao >= 8) {
     dispararConfete();
   }
-}
-function mostrarRanking() {
-  // Se o usuário acertou 8 ou mais, dispara o confete
-  if (pontuacao >= 8) {
-    dispararConfete();
-  }
-
-  // Esconde a tela de quiz e exibe a tela final
-  document.getElementById("quiz").style.display = "none";
-  document.getElementById("final").style.display = "block";
-
-  // Preenche a lista de ranking na tela final
-  const listaRankingFinal = document.getElementById("ranking");
-  listaRankingFinal.innerHTML = ""; // Limpa a lista antes de adicionar os itens
-
-  const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-  ranking.forEach(item => {
-    const li = document.createElement("li");
-    li.innerText = `${item.nome} – ${item.pontos} pontos`;
-    listaRankingFinal.appendChild(li);
-  });
 }
 
 function voltarParaInicio() {
-  // Esconde a tela de ranking
+  // Esconde a tela de ranking e exibe a tela inicial
   document.getElementById("rankingTela").style.display = "none";
-  // Exibe a tela inicial
   document.getElementById("inicio").style.display = "block";
 }
 
