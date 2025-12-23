@@ -1,85 +1,164 @@
+/* =========================
+   CORES INSTITUCIONAIS HCPA
+   ========================= */
 :root {
   --azul-hcpa: #005aa7;
-  --azul-claro: #e6f0fa;
-  --cinza-texto: #333;
+  --azul-escuro-hcpa: #003f7d;
+  --cinza-claro: #f4f6f8;
+  --cinza-medio: #e0e0e0;
   --verde-sucesso: #2e7d32;
   --vermelho-erro: #c62828;
+  --texto-principal: #1f2933;
 }
 
+/* =========================
+   RESET E BASE
+   ========================= */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background: linear-gradient(135deg, #e6f0fa, #ffffff);
-  margin: 0;
-  color: var(--cinza-texto);
+  background: linear-gradient(180deg, var(--azul-hcpa), var(--azul-escuro-hcpa));
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--texto-principal);
 }
 
+/* =========================
+   CONTAINER
+   ========================= */
 .container {
-  max-width: 820px;
-  margin: 40px auto;
-  padding: 30px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 720px;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* =========================
+   TÍTULOS
+   ========================= */
 h1, h2 {
   color: var(--azul-hcpa);
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 p {
-  line-height: 1.6;
+  margin-bottom: 1rem;
+  line-height: 1.5;
 }
 
-input {
+/* =========================
+   INPUT
+   ========================= */
+input[type="text"] {
   width: 100%;
-  padding: 14px;
-  font-size: 16px;
+  padding: 0.75rem;
+  margin-bottom: 1.25rem;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-bottom: 15px;
+  border: 1px solid var(--cinza-medio);
+  font-size: 1rem;
 }
 
+/* =========================
+   BOTÕES
+   ========================= */
 button {
   width: 100%;
-  padding: 14px;
-  margin: 8px 0;
-  font-size: 16px;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   border: none;
-  border-radius: 8px;
-  background-color: var(--azul-hcpa);
-  color: white;
+  border-radius: 10px;
   cursor: pointer;
+  background-color: var(--azul-hcpa);
+  color: #ffffff;
   transition: all 0.2s ease;
 }
 
 button:hover {
-  background-color: #004a8a;
-  transform: translateY(-1px);
+  background-color: var(--azul-escuro-hcpa);
+  transform: translateY(-2px);
 }
 
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   ALTERNATIVAS
+   ========================= */
 #alternativas button {
-  background-color: var(--azul-claro);
-  color: var(--azul-hcpa);
-  font-weight: 500;
+  background-color: var(--cinza-claro);
+  color: var(--texto-principal);
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--cinza-medio);
 }
 
 #alternativas button:hover {
-  background-color: #d4e6f7;
+  background-color: var(--azul-hcpa);
+  color: #ffffff;
 }
 
+/* =========================
+   FEEDBACK
+   ========================= */
 #feedback {
-  font-weight: bold;
-  margin-top: 15px;
+  font-weight: 600;
+  margin-top: 1rem;
 }
 
-@media (max-width: 600px) {
+#feedback.correto {
+  color: var(--verde-sucesso);
+}
+
+#feedback.errado {
+  color: var(--vermelho-erro);
+}
+
+/* =========================
+   PROGRESSO
+   ========================= */
+#progresso {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--azul-escuro-hcpa);
+}
+
+/* =========================
+   RANKING
+   ========================= */
+#ranking {
+  list-style: none;
+  padding: 0;
+}
+
+#ranking li {
+  background-color: var(--cinza-claro);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* =========================
+   RESPONSIVO
+   ========================= */
+@media (max-width: 480px) {
   .container {
-    margin: 20px;
-    padding: 20px;
+    padding: 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
   }
 }
