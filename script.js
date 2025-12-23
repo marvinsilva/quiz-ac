@@ -165,50 +165,26 @@ function mostrarRanking() {
 }
 
 function dispararConfete() {
-  const canvas = document.getElementById("confetti");
-  const ctx = canvas.getContext("2d");
+  const duracao = 2 * 1000;
+  const fim = Date.now() + duracao;
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  canvas.style.position = "fixed";
-  canvas.style.top = 0;
-  canvas.style.left = 0;
-  canvas.style.pointerEvents = "none";
-
-  const confetes = [];
-
-  for (let i = 0; i < 150; i++) {
-    confetes.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height - canvas.height,
-      r: Math.random() * 6 + 4,
-      d: Math.random() * 150,
-      color: `hsl(${Math.random() * 360}, 80%, 60%)`,
-      tilt: Math.random() * 10 - 10
+  (function frame() {
+    confetti({
+      particleCount: 5,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 }
     });
-  }
-
-  let angle = 0;
-
-  function animar() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    angle += 0.01;
-
-    confetes.forEach(c => {
-      c.y += Math.cos(angle + c.d) + 2;
-      c.x += Math.sin(angle);
-      ctx.beginPath();
-      ctx.fillStyle = c.color;
-      ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
-      ctx.fill();
+    confetti({
+      particleCount: 5,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 }
     });
 
-    if (confetes.some(c => c.y < canvas.height)) {
-      requestAnimationFrame(animar);
-    } else {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (Date.now() < fim) {
+      requestAnimationFrame(frame);
     }
-  }
-
-  animar();
+  })();
 }
+
