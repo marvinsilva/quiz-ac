@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#caso {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#alternativas button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#feedback {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#btnProximo {
+  margin-top: 20px;
+}
