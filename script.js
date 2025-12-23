@@ -10,7 +10,7 @@ const questoes = [
     caso: "Paciente idoso, pós-AVC, apresenta tosse frequente durante alimentação, voz molhada e engasgos.",
     alternativas: ["Nutricionista", "Fonoaudiólogo", "Fisioterapeuta", "Psicólogo"],
     correta: 1,
-    justificativa: "O fonoaudiólogo é o profissional responsável pela avaliação e manejo da disfagia."
+    justificativa: "O fonoaudiólogo é responsável pela avaliação e manejo da disfagia."
   },
   {
     caso: "Paciente acamado em CTI, com secreção pulmonar espessa e dificuldade para expandir o tórax.",
@@ -25,22 +25,17 @@ const questoes = [
     justificativa: "O nutricionista avalia ingestão, estado nutricional e prescrição dietética."
   },
   {
-    caso: "Paciente com sofrimento emocional intenso após diagnóstico de doença grave.",
-    alternativas: ["Assistente social", "Psicólogo", "Fonoaudiólogo", "Nutricionista"],
-    correta: 1,
-    justificativa: "O psicólogo atua no cuidado da saúde mental e suporte emocional."
+    caso: "Paciente internado em CTI, consciente, apresenta ansiedade intensa, medo de morte e choro recorrente.",
+    alternativas: ["Fonoaudiólogo", "Enfermeiro", "Psicólogo", "Assistente social"],
+    correta: 2,
+    justificativa: "O psicólogo atua no manejo do sofrimento psíquico e estratégias de enfrentamento."
   },
   {
-  caso: "Paciente internado em CTI, consciente, apresenta episódios frequentes de ansiedade intensa, medo de morte, choro recorrente e dificuldade de adesão aos cuidados devido ao sofrimento emocional.",
-  alternativas: [
-    "Fonoaudiólogo",
-    "Enfermeiro",
-    "Psicólogo",
-    "Assistente social"
-  ],
-  correta: 2,
-  justificativa: "O psicólogo atua na avaliação e intervenção sobre sofrimento psíquico, ansiedade, medo e estratégias de enfrentamento durante a hospitalização."
-},
+    caso: "Paciente hospitalizado apresenta alteração importante no padrão de sono, dor não controlada e dificuldades no manejo diário dos cuidados.",
+    alternativas: ["Fisioterapeuta", "Fonoaudiólogo", "Enfermeiro", "Psicólogo"],
+    correta: 2,
+    justificativa: "O enfermeiro é responsável pelo cuidado integral e manejo diário."
+  },
   {
     caso: "Paciente hospitalizado, sem rede de apoio familiar e com dificuldades socioeconômicas.",
     alternativas: ["Psicólogo", "Enfermeiro", "Assistente social", "Nutricionista"],
@@ -51,7 +46,7 @@ const questoes = [
     caso: "Paciente traqueostomizado com dificuldade de comunicação oral.",
     alternativas: ["Fonoaudiólogo", "Fisioterapeuta", "Psicólogo", "Enfermeiro"],
     correta: 0,
-    justificativa: "O fonoaudiólogo atua na comunicação e no uso de válvulas de fala."
+    justificativa: "O fonoaudiólogo atua na comunicação e uso de válvulas de fala."
   },
   {
     caso: "Paciente com risco elevado de lesão por pressão devido à imobilidade prolongada.",
@@ -73,11 +68,10 @@ const questoes = [
   }
 ];
 
-/* -------- VARIÁVEIS DE CONTROLE -------- */
-
 let indice = 0;
 let pontuacao = 0;
 let jogador = "";
+
 
 /* -------- FUNÇÕES PRINCIPAIS -------- */
 
