@@ -304,7 +304,38 @@ function mostrarRankingFinal() {
     
     renderizarRanking("rankingFinal");
 
+    // Lógica do confete (acima de 50% de acerto)
     if (pontuacao >= 8) dispararConfete();
+
+    /* --- BRINCADEIRA DO DANIEL --- */
+    
+    // 1. Pega o elemento onde vamos mostrar a sopa (ou cria se não existir)
+    let divSopa = document.getElementById("areaSopa");
+    
+    if (!divSopa) {
+        // Se não existir no HTML, cria agora via JavaScript
+        divSopa = document.createElement("div");
+        divSopa.id = "areaSopa";
+        divSopa.style.marginTop = "20px";
+        divSopa.style.textAlign = "center";
+        // Adiciona logo depois do ranking e antes do botão
+        const sectionFinal = document.getElementById("final");
+        sectionFinal.insertBefore(divSopa, sectionFinal.lastElementChild); 
+    }
+
+    // 2. Verifica se o nome é Daniel (ignorando maiúsculas/minúsculas)
+    if (jogador.toLowerCase() === "daniel") {
+        divSopa.innerHTML = `
+            <h3 style="color: #d35400; margin-top: 15px;">Muito bem! Quer uma sopa? 🥣</h3>
+            <img src="sopa.jpg" 
+                 alt="Prato de Sopa" 
+                 style="width: 200px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+        `;
+        divSopa.style.display = "block";
+    } else {
+        // Se não for o Daniel, esconde (caso ele jogue de novo com outro nome)
+        divSopa.style.display = "none";
+    }
 }
 
 function voltarParaInicio() {
