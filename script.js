@@ -71,7 +71,7 @@ const questoes = [
     // --- FARMÁCIA ---
     {
         caso: " Paciente idoso chega confuso, trazendo uma sacola com 15 medicamentos diferentes de uso domiciliar. Para evitar duplicidade ou interações com a nova prescrição hospitalar, deve-se solicitar:",
-        alternativas: ["Conciliação Medicamentosa pela Farmácia", "Avaliação Social", "Triagem Nutricional", "Avaliação Psicológica"],
+        alternativas: ["Farmácia", "Serviço Social", "Nutricão", "Psicologia"],
         correta: 0,
         justificativa: "O Farmacêutico Clínico realiza a conciliação medicamentosa, garantindo que os remédios de casa sejam mantidos, suspensos ou ajustados corretamente."
     },
@@ -110,7 +110,7 @@ const questoes = [
     // --- ENFERMAGEM ---
     {
         caso: " Paciente apresenta uma Lesão por Pressão (escara) Sacral Grau 3 com necrose. A equipe médica solicita avaliação especializada para desbridamento e cobertura específica. Quem é a referência técnica?",
-        alternativas: ["Fisioterapia", "Enfermagem (Estomaterapia/Curativos)", "Farmácia", "Nutrição"],
+        alternativas: ["Fisioterapia", "Enfermagem", "Farmácia", "Nutrição"],
         correta: 1,
         justificativa: "Enfermeiros especialistas (Estomaterapeutas ou da Comissão de Pele) avaliam feridas complexas e prescrevem a cobertura/curativo ideal."
     },
