@@ -327,7 +327,7 @@ function mostrarRankingFinal() {
     if (jogador.toLowerCase() === "daniel") {
         divSopa.innerHTML = `
             <h3 style="color: #d35400; margin-top: 15px;">Muito bem! Quer uma sopa? 🥣</h3>
-            <img src="sopa.jpg" 
+            <img src="sopa.png" 
                  alt="Prato de Sopa" 
                  style="width: 200px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
         `;
